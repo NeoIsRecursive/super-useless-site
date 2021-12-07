@@ -1,57 +1,54 @@
-const canvas = document.querySelector('canvas');
-const ctx = canvas.getContext('2d');
-let keys = [];
-let mouse = {
-    x:0,
-    y:0
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.body.appendChild( renderer.domElement );
+
+const geometry = new THREE.BoxGeometry();
+const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const cube = new THREE.Mesh( geometry, material );
+scene.add( cube );
+
+camera.position.z = 5;
+
+function moveCube(){
+    if (keys['ArrowLeft']){
+        cube.position.x -= 0.1;
+    }
+    if (keys['ArrowRight']){
+        cube.position.x += 0.1;
+    }
+}
+dt = 0;
+function animate() {
+    moveCube();
+    renderer.render( scene, camera );
+	requestAnimationFrame(animate);
 }
 
-window.addEventListener('keydown', x => {
+const plane = new THREE.Plane(new THREE.Vector3(1, 1, 1), 1);
+const raycaster = new THREE.Raycaster(); 
+const mouse = new THREE.Vector2();       
+const intersectPoint = new THREE.Vector3();
+document.addEventListener('mousemove', event =>{
+
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster.setFromCamera(mouse, camera);
+    raycaster.ray.intersectPlane(plane, intersectPoint);
+    cube.lookAt(intersectPoint);
+});
+
+let keys = [];
+
+document.addEventListener('keydown', x => {
     keys[x.key] = true;
 });
 
-window.addEventListener('keyup', x => {
+document.addEventListener('keyup', x => {
     keys[x.key] = false;
 });
 
-window.addEventListener('mousemove', x => {
-    mouse.x = x.x;
-    mouse.y = x.y;
-})
-
-function gameLoop(){
-    this.prev_time = 0;
-    canvas.width = 500;
-    canvas.height = 500;
-    gameMap = new Map();
-    player = new Player();
-
-    this.update = (dt) =>{
-        [player].forEach(enteties => {
-            enteties.update(dt);
-        })
-    }
-
-    this.render = () => {
-        [gameMap,player].forEach(enteties => {
-            enteties.draw();
-        });
-        ctx.fillStyle = 'red';
-        ctx.fillRect(mouse.x-5,mouse.y-5,10,10);
-    }
-
-
-    this.frame = (timestamp) => {
-        ctx.clearRect(0,0,canvas.width,canvas.height);
-        this.dt = (timestamp - this.prev_time)/1000;
-        this.prev_time = timestamp;
-        this.update(dt);
-        this.render();
-        requestAnimationFrame(frame);
-    }
-    this.frame();
-
-
-}
-
-gameLoop();
+animate();
