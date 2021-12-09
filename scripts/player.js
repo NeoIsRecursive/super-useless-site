@@ -9,11 +9,13 @@ class Player {
   init() {
     const player = document.createElement("div");
     player.id = "player" + this.id;
+    player.setAttribute("tabindex", "0");
     player.setAttribute("class", "player");
     document.querySelector(".game-board").appendChild(player);
     this.drawPlayer();
-    player.addEventListener("click", (event) => {
-      this.rollDice();
+    player.addEventListener("keyup", (event) => {
+      console.log(event.key);
+      if (event.key === "Enter") this.rollDice();
     });
   }
   rollDice() {
