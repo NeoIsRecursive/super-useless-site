@@ -1,4 +1,5 @@
 <img src="https://media.giphy.com/media/H4uFElBB9Nt7zq3RZ9/giphy.gif"/>
+
 # Cool dice game
 
 Yeah it just plays itself but I guess you can help?

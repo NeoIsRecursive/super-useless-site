@@ -1,3 +1,9 @@
+:root {
+  --text-color: black;
+  --button-color: palegreen;
+  --border: 1px solid var(--text-color);
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -6,8 +12,8 @@ header {
 
 header button {
   padding: 10px;
-  border: 1px solid black;
-  background-color: palegreen;
+  border: var(--border);
+  background-color: var(--button-color);
   cursor: pointer;
 }
 
@@ -18,7 +24,7 @@ header button {
 }
 
 .player {
-  border: 1px solid black;
+  border: var(--border);
   display: inline-block;
   padding: 10px;
   text-align: left;
