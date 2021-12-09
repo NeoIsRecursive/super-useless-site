@@ -20,9 +20,9 @@ class Player {
   }
   rollDice() {
     this.die.push(Math.floor(Math.random() * 6) + 1);
-    if (this.die.length > 3) this.reset();
     this.calcScore();
     this.drawPlayer();
+    if (this.die.length >= 3) this.reset();
   }
 
   drawPlayer() {
