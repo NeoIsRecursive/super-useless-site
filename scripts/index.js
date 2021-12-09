@@ -7,23 +7,45 @@ class Player {
     constructor(id){
         this.id = id;
         this.score = 0;
-        this.rolls = [];
+        this.die = [];
+        this.init();
+    }
+    init(){
+      const player = document.createElement('div');
+      player.id = 'player'+this.id;
+      document.querySelector('.game-board').appendChild(player);
+      this.drawPlayer();
+      player.addEventListener('click', event =>{
+        this.rollDice();
+      });
     }
     rollDice() {
-        this.rolls.push(Math.ceil(Math.random()*6));
-        if (this.rolls.length > 3) score = 0;
-        this.calcScore();
+        this.die.push(Math.floor(Math.random()*6)+1);
+        if (this.die.length > 3) {
+          this.score = 0;
+          this.die = [];
+        }
+        this.drawPlayer();
     }
 
-    drawDiceRoll() {
-        const player = document.querySelector('player'+this.id);
-        const roll = document.createElement('p');
-        roll.textContent = 'roll ' + this.rolls.length + ': ' +this.rolls[this.rolls.length-1];
-        player.appendChild(roll);  
+    drawPlayer() {
+        const player = document.querySelector('#player'+this.id);
+        player.innerHTML = '';
+        const rolls = document.createElement('ul');
+        this.die.forEach(value => {
+          const roll = document.createElement('li');
+          roll.textContent = value;
+          rolls.appendChild(roll);
+        });
+        const button = document.createElement('button');
+        button.id = this.id;
+        button.textContent = 'roll';
+        player.appendChild(rolls);
+        player.appendChild(button);
     }
 
     calcScore(){
-        this.rolls.forEach(roll => {
+        this.die.forEach(roll => {
             this.score += roll;
         });
     }
