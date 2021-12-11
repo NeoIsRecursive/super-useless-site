@@ -7,6 +7,7 @@ class Player {
     this.dice = [];
     this.init();
   }
+
   init() {
     const player = document.createElement("div");
     player.id = "player" + this.id;
@@ -18,34 +19,42 @@ class Player {
       if (event.key === "Enter") this.rollDice();
     });
   }
+
   rollDice() {
     this.dice.push(Math.floor(Math.random() * 6) + 1);
     this.diceThrown++;
-    const rolls = this.dices();
+    const rolls = this.getDices();
     this.calcScore();
     this.drawPlayer(rolls);
     if (this.dice.length >= 3) this.reset();
   }
 
-  dices() {
+  getDices() {
     const rolls = document.createElement("div");
     rolls.setAttribute("class", "dice-rolls");
+
     this.dice.forEach((value) => {
       rolls.appendChild(makeDice(value));
     });
+
     return rolls;
   }
 
   drawPlayer(dice = document.createElement("div")) {
     const player = document.querySelector("#player" + this.id);
     player.textContent = "player " + this.id;
+
     const rolls = dice;
+
     const rolled = document.createElement("p");
     rolled.textContent = "total rolled: " + this.sumOfRolls;
+
     const score = document.createElement("p");
     score.textContent = "score: " + this.score;
+
     const diceThrown = document.createElement("p");
     diceThrown.textContent = "dice thrown: " + this.diceThrown;
+
     player.appendChild(score);
     player.appendChild(diceThrown);
     player.appendChild(rolled);
@@ -59,6 +68,7 @@ class Player {
       this.score++;
     }
   }
+
   reset() {
     this.sumOfRolls = 0;
     this.dice = [];
