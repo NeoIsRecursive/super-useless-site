@@ -1,7 +1,16 @@
+@font-face {
+  font-family: "televideo";
+  src: url("fonts/televideo.regular.woff");
+}
+
 :root {
   --text-color: black;
   --button-color: palegreen;
   --border: 1px solid var(--text-color);
+}
+
+h1 {
+  font-family: "televideo";
 }
 
 header {

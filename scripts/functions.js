@@ -10,6 +10,19 @@ const createPlayers = () => {
   }
 };
 
+const makeDice = (spots) => {
+  const container = document.createElement("div");
+  container.setAttribute("class", "dice");
+
+  const spot = document.createElement("div");
+  spot.setAttribute("class", "spot");
+
+  for (let index = 0; index < spots; index++) {
+    container.appendChild(spot.cloneNode());
+  }
+  return container;
+};
+
 const autoPlay = () => {
   index = 0;
   setInterval(() => {

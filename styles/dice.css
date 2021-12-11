@@ -1,0 +1,24 @@
+.dice-rolls {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: center;
+}
+
+.dice {
+  border: var(--border);
+  padding: 2px;
+  width: 19px;
+  height: 19px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.spot {
+  width: 5px;
+  height: 5px;
+  background-color: black;
+}

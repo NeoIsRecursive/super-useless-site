@@ -1,9 +1,10 @@
 class Player {
   constructor(id) {
     this.id = id;
-    this.rolled = 0;
+    this.sumOfRolls = 0;
     this.score = 0;
-    this.die = [];
+    this.diceThrown = 0;
+    this.dice = [];
     this.init();
   }
   init() {
@@ -14,47 +15,52 @@ class Player {
     document.querySelector(".game-board").appendChild(player);
     this.drawPlayer();
     player.addEventListener("keyup", (event) => {
-      console.log(event.key);
       if (event.key === "Enter") this.rollDice();
     });
   }
   rollDice() {
-    this.die.push(Math.floor(Math.random() * 6) + 1);
+    this.dice.push(Math.floor(Math.random() * 6) + 1);
+    this.diceThrown++;
+    const rolls = this.dices();
     this.calcScore();
-    this.drawPlayer();
-    if (this.die.length >= 3) this.reset();
+    this.drawPlayer(rolls);
+    if (this.dice.length >= 3) this.reset();
   }
 
-  drawPlayer() {
+  dices() {
+    const rolls = document.createElement("div");
+    rolls.setAttribute("class", "dice-rolls");
+    this.dice.forEach((value) => {
+      rolls.appendChild(makeDice(value));
+    });
+    return rolls;
+  }
+
+  drawPlayer(dice = document.createElement("div")) {
     const player = document.querySelector("#player" + this.id);
     player.textContent = "player " + this.id;
-    const rolls = document.createElement("ol");
-    this.die.forEach((value) => {
-      const roll = document.createElement("li");
-      roll.textContent = value;
-      rolls.appendChild(roll);
-    });
+    const rolls = dice;
     const rolled = document.createElement("p");
-    rolled.textContent = "total rolled: " + this.rolled;
+    rolled.textContent = "total rolled: " + this.sumOfRolls;
     const score = document.createElement("p");
     score.textContent = "score: " + this.score;
+    const diceThrown = document.createElement("p");
+    diceThrown.textContent = "dice thrown: " + this.diceThrown;
     player.appendChild(score);
+    player.appendChild(diceThrown);
     player.appendChild(rolled);
     player.appendChild(rolls);
   }
 
   calcScore() {
-    this.rolled = 0;
-    this.die.forEach((roll) => {
-      this.rolled += roll;
-    });
-    if (this.rolled === 12) {
+    this.sumOfRolls += this.dice[this.dice.length - 1];
+    if (this.sumOfRolls === 12) {
       this.reset();
       this.score++;
     }
   }
   reset() {
-    this.rolled = 0;
-    this.die = [];
+    this.sumOfRolls = 0;
+    this.dice = [];
   }
 }
