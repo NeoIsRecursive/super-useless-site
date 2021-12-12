@@ -19,7 +19,7 @@ header {
   align-items: center;
 }
 
-header button {
+button {
   padding: 10px;
   border: var(--border);
   background-color: var(--button-color);
@@ -30,6 +30,7 @@ header button {
   display: flex;
   gap: 5px;
   flex-wrap: wrap;
+  margin: 0 auto;
 }
 
 .player {

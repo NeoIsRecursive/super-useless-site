@@ -1,13 +1,15 @@
 let players = [];
 
-const createPlayer = () => {
+let createPlayer = () => {
   players.push(new Player(players.length + 1));
 };
 
-const createPlayers = () => {
-  for (let i = 0; i < 10; i++) {
+const createPlayers = (x) => {
+  for (let i = 0; i < x; i++) {
     createPlayer();
   }
+  createPlayer = () =>
+    openContainer("<h2>you aren't making any more players my dude.</h2>");
 };
 
 const makeDice = (spots) => {
