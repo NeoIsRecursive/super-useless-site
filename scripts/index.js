@@ -9,7 +9,7 @@ document.querySelector(".newPlayerBtn").addEventListener("click", () => {
 
 document.querySelector(".about-btn").addEventListener("click", () => {
   openContainer(
-    "<h2>About</h2><p>every second a 'player' rolls their dice and everything is calculated, you can use TAB to go trough 'players' and ENTER to roll for them.</p><p>Every time you vist the site a random number of players is created and you cannot create more</p>"
+    "<h2>About</h2><p>every second a 'player' rolls their dice and everything is calculated, you can use TAB to go trough 'players' and ENTER to roll for them.</p><p>Every time you vist the site a random number of players is created and you cannot create more</p><h2>Rules</h2><p>Each player get three dice to throw a sum of 12, it can be done with only two throws. If they succeed the player is awarded with a point.</p>"
   );
 });
 

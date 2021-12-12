@@ -6,14 +6,30 @@
 :root {
   --text-color: black;
   --button-color: palegreen;
+  --button-focus: rgb(0, 255, 42);
   --border: 1px solid var(--text-color);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 h1 {
   font-family: "televideo";
 }
 
+body {
+  display: grid;
+  grid-template-rows: max-content 1fr;
+  gap: 10px;
+  width: 95%;
+  margin: 0 auto;
+}
+
 header {
+  margin-top: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,19 +42,32 @@ button {
   cursor: pointer;
 }
 
+button:focus {
+  background-color: var(--button-focus);
+}
+
 .game-board {
-  display: flex;
+  /* display: flex;
   gap: 5px;
-  flex-wrap: wrap;
-  margin: 0 auto;
+  flex-wrap: wrap; */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, max-content));
+  justify-content: center;
+  gap: 5px;
 }
 
 .player {
   border: var(--border);
-  display: inline-block;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 5px;
   padding: 10px;
   text-align: left;
-  width: 95px;
+  width: 150px;
+}
+
+.player:focus {
+  background-color: gold;
 }
 
 .player ol {

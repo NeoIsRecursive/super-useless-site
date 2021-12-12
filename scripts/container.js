@@ -5,6 +5,7 @@ const openContainer = (message) => {
   const close = document.createElement("button");
   close.textContent = "close";
   close.addEventListener("click", (x) => container.remove());
+  close.setAttribute("tabindex", "0");
 
   const content = document.createElement("div");
   content.innerHTML = message;

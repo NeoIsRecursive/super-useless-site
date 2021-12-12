@@ -15,6 +15,8 @@ const createPlayers = (x) => {
 const makeDice = (spots) => {
   const container = document.createElement("div");
   container.setAttribute("class", "dice");
+  container.setAttribute("aria-label", "dice");
+  container.setAttribute("aria-description", "number " + spots);
 
   const spot = document.createElement("div");
   spot.setAttribute("class", "spot");

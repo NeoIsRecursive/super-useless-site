@@ -11,7 +11,7 @@ class Player {
   init() {
     const player = document.createElement("div");
     player.id = "player" + this.id;
-    player.setAttribute("tabindex", "0");
+    player.setAttribute("tabindex", "1");
     player.setAttribute("class", "player");
     document.querySelector(".game-board").appendChild(player);
     this.drawPlayer();
@@ -32,6 +32,8 @@ class Player {
   getDices() {
     const rolls = document.createElement("div");
     rolls.setAttribute("class", "dice-rolls");
+    rolls.setAttribute("aria-label", "rolled dice");
+    rolls.setAttribute("aria-description", "this turns rolled dice");
 
     this.dice.forEach((value) => {
       rolls.appendChild(makeDice(value));
