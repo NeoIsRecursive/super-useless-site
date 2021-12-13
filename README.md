@@ -20,5 +20,5 @@ Just clone it and run index.html
 
 Tested by the following people:
 
-1. Jane Doe
-2. John Doe
+1. Simon Helier
+2. Christopher Michael
