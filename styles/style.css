@@ -8,6 +8,7 @@
   --button-color: palegreen;
   --button-focus: rgb(0, 255, 42);
   --border: 1px solid var(--text-color);
+  --header-font: "televideo";
 }
 
 * {
@@ -17,7 +18,7 @@
 }
 
 h1 {
-  font-family: "televideo";
+  font-family: var(--header-font);
 }
 
 body {

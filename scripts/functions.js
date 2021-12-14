@@ -8,8 +8,14 @@ const createPlayers = (x) => {
   for (let i = 0; i < x; i++) {
     createPlayer();
   }
-  createPlayer = () =>
-    openContainer("<h2>you aren't making any more players my dude.</h2>");
+  createPlayer = () => {
+    if (Math.floor(Math.random() * 2) === 0) {
+      players.push(new Player(players.length + 1));
+    } else {
+      createPlayer = () =>
+        openContainer("<h2>Yeah I don't want to anymore.</h2>");
+    }
+  };
 };
 
 const makeDice = (spots) => {
