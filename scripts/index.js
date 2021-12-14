@@ -13,5 +13,14 @@ document.querySelector(".about-btn").addEventListener("click", () => {
   );
 });
 
+document.querySelector("h1").addEventListener("mouseenter", () => {
+  colorChanger = setInterval(() => {
+    document.querySelector("h1").style.color = getRandomColor();
+  }, 200);
+});
+document.querySelector("h1").addEventListener("mouseleave", () => {
+  clearInterval(colorChanger);
+});
+
 createPlayers(Math.floor(Math.random() * 100));
 autoPlay();
